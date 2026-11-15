@@ -32,7 +32,7 @@
             <ul>
               <li><a href="index.html#inicio">Inicio</a></li>
               <li><a href="catalogo.html#catalogo">Catálogo General</a></li>
-              <li><a href="catalogo.html#sudaderas">Sudaderas NFL</a></li>
+              <li><a href="catalogo.html#sudaderas">Sudaderas MGL</a></li>
               <li><a href="catalogo.html#soccer">Playeras de Soccer</a></li>
               <li><a href="novedades.html#novedades">Novedades</a></li>
             </ul>
