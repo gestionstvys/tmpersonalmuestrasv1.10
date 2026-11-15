@@ -1,0 +1,3 @@
+CARPETA EXISTENTE CONSERVADA
+Contenedor de imagenes que ya estaba dentro de codigo/.
+Llamada actual: ninguna detectada; no se encontraron archivos.

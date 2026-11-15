@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /blog/admin/
+Disallow: /mantenimiento
+Disallow: /login/
+Disallow: /registro/
+Disallow: /oauth/
+
+Sitemap: https://acpa.mx/sitemap.xml

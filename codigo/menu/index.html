@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tu Marca Personal - Menú Interactivo</title>
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="../img/logos/Icono_tmp.png">
+
+    <!-- TIPOGRAFÍAS -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- ARCHIVO CSS -->
+    <link rel="stylesheet" href="menu.css">
+
+</head>
+
+<body>
+
+    <!-- ==========================================
+         ENCABEZADO / MENÚ PRINCIPAL
+         ========================================== -->
+
+    <header class="site-header">
+
+        <!-- LOGOTIPO -->
+        <div class="logo-container">
+            <a href="../../index.html" class="logo-link">
+                <img
+                    src="../img/logos/logo_tmp.png"
+                    alt="Logotipo de Tu Marca Personal"
+                    title="Logotipo de Tu Marca Personal"
+                    class="logo-img">
+            </a>
+        </div>
+
+
+        <button class="menu-toggle" type="button" aria-controls="primary-navigation" aria-expanded="false" aria-label="Abrir menú">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+
+        <!-- NAVEGACIÓN -->
+        <nav id="primary-navigation" class="nav-links" aria-label="Navegación principal">
+
+            <a href="../../index.html" class="nav-item">
+                <span class="nav-text" data-hover="Inicio">
+                    Inicio
+                </span>
+            </a>
+
+            <a href="../../catalogo.html" class="nav-item">
+                <span class="nav-text" data-hover="Catálogo">
+                    Catálogo
+                </span>
+            </a>
+
+            <a href="../../novedades.html" class="nav-item">
+                <span class="nav-text" data-hover="Novedades">
+                    Novedades
+                </span>
+            </a>
+
+            <a href="../../ayuda.html" class="nav-item">
+                <span class="nav-text" data-hover="Ayuda">
+                    Ayuda
+                </span>
+            </a>
+
+        </nav>
+
+
+        <!-- ==========================================
+             BOTÓN WHATSAPP
+             SLIDE CLOSE + GLOW + SHIMMER
+             ========================================== -->
+
+        <span class="header-cta-glow-wrapper">
+
+            <a
+                href="https://api.whatsapp.com/send/?phone=5215611265205&text&type=phone_number&app_absent=0"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="header-cta"
+                aria-label="Contactar por WhatsApp">
+
+                <!-- DESTELLO ANIMADO -->
+                <span class="cta-shimmer"></span>
+
+                <!-- TEXTO DEL BOTÓN -->
+                <span class="cta-text">
+                    Contacto Rápido
+                </span>
+
+            </a>
+
+        </span>
+
+    </header>
+
+    <script src="menu.js"></script>
+
+</body>
+
+</html>

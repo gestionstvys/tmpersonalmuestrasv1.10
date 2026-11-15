@@ -1,0 +1,172 @@
+/* ==========================================
+   ESTILOS DE LA PILA DE BOTONES FLOTANTES
+   ========================================== */
+:root {
+    --fondo-grisaceo: #F4F6F9; /* Fondo blanco grisáceo suave de tu página */
+    --color-tiktok: #00f2fe;
+    --color-instagram: #fd1d1d;
+    --color-facebook: #1877f2;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--fondo-grisaceo);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+}
+
+/* Contenedor principal centrado verticalmente en el lado derecho */
+.button-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: fixed;
+    right: clamp(12px, 2vw, 25px);
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 900;
+}
+
+/* Envolvente individual para posicionar el botón y su etiqueta */
+.btn-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+/* Botón Orb circular estilo cristal con efectos */
+.orb-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: rgba(244, 246, 249, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                background 0.3s ease, 
+                box-shadow 0.3s ease;
+    box-shadow: 0 4px 20px rgba(11, 45, 99, 0.12);
+    text-decoration: none;
+    border: 1px solid rgba(11, 45, 99, 0.2);
+}
+
+/* Configuración de los íconos SVG internos */
+.orb-btn svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: #0B2D63; /* Azul marino institucional */
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke 0.3s ease;
+}
+
+/* Ajuste específico para Facebook (ícono sólido) */
+.btn-facebook svg {
+    fill: #0B2D63;
+    stroke: none;
+}
+
+/* --- EFECTOS HOVER POR RED SOCIAL --- */
+
+/* TikTok Hover */
+.btn-tiktok:hover {
+    background: var(--color-tiktok);
+    border-color: var(--color-tiktok);
+    box-shadow: 0 0 25px rgba(0, 242, 254, 0.502);
+    transform: scale(1.1);
+}
+.btn-tiktok:hover svg {
+    stroke: #ffffff;
+}
+
+/* Instagram Hover */
+.btn-instagram:hover {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    border-color: transparent;
+    box-shadow: 0 0 25px rgba(221, 42, 123, 0.5);
+    transform: scale(1.1);
+}
+.btn-instagram:hover svg {
+    stroke: #ffffff;
+}
+
+/* Facebook Hover */
+.btn-facebook:hover {
+    background: var(--color-facebook);
+    border-color: var(--color-facebook);
+    box-shadow: 0 0 25px rgba(24, 119, 242, 0.5);
+    transform: scale(1.1);
+}
+.btn-facebook:hover svg {
+    fill: #ffffff;
+}
+
+/* --- ETIQUETA FLOTANTE (TOOLTIP) --- */
+.btn-label {
+    position: absolute;
+    right: 65px;
+    background: rgba(11, 45, 99, 0.95); /* Azul marino elegante */
+    color: #ffffff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+    pointer-events: none;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Mostrar tooltip al hacer hover en el contenedor */
+.btn-wrapper:hover .btn-label {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+.btn-wrapper:focus-within .btn-label {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+@media (max-width: 600px) {
+    .button-stack {
+        right: 10px;
+        gap: 12px;
+    }
+
+    .orb-btn {
+        width: 48px;
+        height: 48px;
+    }
+
+    .btn-label {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .orb-btn,
+    .orb-btn svg,
+    .btn-label {
+        transition: none;
+    }
+}

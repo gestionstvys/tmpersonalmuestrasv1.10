@@ -1,0 +1,72 @@
+.page-content {
+  min-height: 55vh;
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: clamp(3rem, 8vw, 6rem) clamp(1.25rem, 4vw, 2rem);
+  color: var(--negro-carbon, #171A20);
+}
+
+.skip-link {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 2000;
+  padding: 0.7rem 1rem;
+  color: #fff;
+  background: #0B2D63;
+  border-radius: 0.35rem;
+  transform: translateY(-150%);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.page-content h1 {
+  color: var(--azul-marino, #0B2D63);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  line-height: 1.1;
+}
+
+.page-content p {
+  margin-top: 1rem;
+  line-height: 1.6;
+}
+
+.page-content section {
+  margin-top: 2rem;
+  scroll-margin-top: 6rem;
+}
+
+.page-content h2 {
+  color: var(--azul-marino, #0B2D63);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  line-height: 1.25;
+}
+
+.page-content a:focus-visible,
+.skip-link:focus-visible,
+.site-header a:focus-visible,
+.site-header button:focus-visible,
+.site-footer a:focus-visible,
+.button-stack a:focus-visible {
+  outline: 3px solid #D71935;
+  outline-offset: 3px;
+}
+
+@media (max-width: 1400px) {
+  .page-content {
+    padding-right: 5.25rem;
+  }
+
+  .footer-wrapper {
+    padding-right: 5.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer-center-logo img {
+    width: min(220px, 100%);
+  }
+}

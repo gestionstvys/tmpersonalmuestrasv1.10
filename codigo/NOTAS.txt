@@ -1,0 +1,9 @@
+CARPETA EXISTENTE CONSERVADA
+Esta ruta ya estaba dentro de public_html. Se mantiene en su lugar para no
+mover ni borrar estructura preexistente. La nueva organizacion usa
+componentes/ para los elementos independientes.
+Llamada actual: ninguna detectada en el esqueleto vacio.
+referencia de imágenes 
+logo principal-, logo_tmp uso principal, logo_neg_tmp 
+
+ iconos son los favivon 

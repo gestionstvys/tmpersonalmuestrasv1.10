@@ -1,0 +1,23 @@
+<IfModule mod_autoindex.c>
+  Options -Indexes
+</IfModule>
+
+<IfModule mod_authz_core.c>
+  <FilesMatch "^(?!robots\.txt$).*\.(?:txt|map)$">
+    Require all denied
+  </FilesMatch>
+</IfModule>
+
+<IfModule !mod_authz_core.c>
+  <IfModule mod_access_compat.c>
+    <FilesMatch "^(?!robots\.txt$).*\.(?:txt|map)$">
+      Order allow,deny
+      Deny from all
+    </FilesMatch>
+  </IfModule>
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
