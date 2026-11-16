@@ -27,47 +27,105 @@
       </nav>
 
       <div class="product-detail-grid">
-        <section class="product-visual-column" aria-label="Vista de la prenda">
-          <div class="product-3d-stage" id="preview-3d" aria-busy="true">
-            <div class="stage-topline">
-              <span class="stage-tag"><span aria-hidden="true">✦</span> VESTIDOR 3D</span>
-              <span class="stage-hint">Arrastra para girar</span>
-            </div>
-            <canvas id="garment-canvas-3d" tabindex="0" role="img" aria-label="Prenda 3D referencial. Arrastra para girar; también puedes elegir una vista." aria-describedby="model-note"></canvas>
-            <img class="model-fallback" id="model-fallback" src="codigo/img/catalogo/playera-soccer-frente.svg" alt="Vista ilustrada de referencia de una prenda deportiva sin logotipos" hidden>
-            <div class="stage-status" id="stage-status" role="status" aria-live="polite">Preparando el vestidor 3D…</div>
-            <span class="stage-mark" aria-hidden="true">TMP</span>
-            <div class="stage-view-controls" role="group" aria-label="Cambiar vista del modelo 3D">
-              <button type="button" data-view="front" aria-pressed="true">Frente</button>
-              <button type="button" data-view="three-quarter" aria-pressed="false">3/4</button>
-              <button type="button" data-view="side" aria-pressed="false">Perfil</button>
-              <button type="button" data-view="back" aria-pressed="false">Espalda</button>
+        <section class="product-visual-column" aria-label="Vestidor 3D de la prenda">
+          <div class="mockup-workspace">
+            <aside class="mockup-editor-sidebar" aria-label="Herramientas del vestidor 3D">
+              <div class="mockup-editor-heading">
+                <span class="mockup-eyebrow">VESTIDOR TMP</span>
+                <h2>Personaliza tu vista</h2>
+              </div>
+              <div class="mockup-tabs" role="tablist" aria-label="Herramientas de personalización">
+                <button class="mockup-tab is-active" id="tab-garment" type="button" role="tab" aria-selected="true" aria-controls="panel-garment" data-editor-tab="garment">Prenda</button>
+                <button class="mockup-tab" id="tab-design" type="button" role="tab" aria-selected="false" aria-controls="panel-design" data-editor-tab="design" tabindex="-1">Diseño</button>
+                <button class="mockup-tab" id="tab-background" type="button" role="tab" aria-selected="false" aria-controls="panel-background" data-editor-tab="background" tabindex="-1">Fondo</button>
+              </div>
+
+              <div class="mockup-panels">
+                <section class="mockup-panel" id="panel-garment" role="tabpanel" aria-labelledby="tab-garment" data-editor-panel="garment">
+                  <p class="panel-label">Modelo actual</p>
+                  <p class="editor-product-name" id="editor-product-name">Sudadera Deportiva Estilo Americano</p>
+                  <p class="editor-helper">Elige una apariencia para explorar el modelo.</p>
+                  <fieldset class="editor-control-group">
+                    <legend>Color de vista</legend>
+                    <div class="color-options" role="group" aria-label="Elegir color del modelo">
+                      <button class="color-swatch is-selected" type="button" data-color="#0B2D63" style="--swatch:#0B2D63" aria-label="Vista en azul marino" aria-pressed="true"></button>
+                      <button class="color-swatch" type="button" data-color="#171A20" style="--swatch:#171A20" aria-label="Vista en negro" aria-pressed="false"></button>
+                      <button class="color-swatch" type="button" data-color="#F2F1EC" style="--swatch:#F2F1EC" aria-label="Vista en claro" aria-pressed="false"></button>
+                      <button class="color-swatch" type="button" data-color="#08783D" style="--swatch:#08783D" aria-label="Vista en verde" aria-pressed="false"></button>
+                    </div>
+                  </fieldset>
+                  <fieldset class="editor-control-group">
+                    <legend>Patrón de muestra</legend>
+                    <div class="pattern-options" role="group" aria-label="Elegir patrón del modelo">
+                      <button class="pattern-button is-selected" type="button" data-pattern="solid" aria-pressed="true">Liso</button>
+                      <button class="pattern-button" type="button" data-pattern="stripes" aria-pressed="false">Franjas</button>
+                      <button class="pattern-button" type="button" data-pattern="blocks" aria-pressed="false">Bloques</button>
+                    </div>
+                  </fieldset>
+                  <p class="editor-helper">Colores y patrones son previsualizaciones; no confirman opciones disponibles.</p>
+                </section>
+
+                <section class="mockup-panel" id="panel-design" role="tabpanel" aria-labelledby="tab-design" data-editor-panel="design" hidden>
+                  <p class="panel-label">Gráfico personalizado</p>
+                  <label class="design-upload" for="design-upload">
+                    <span class="upload-icon" aria-hidden="true">＋</span>
+                    <strong>Sube tu diseño</strong>
+                    <span>PNG, JPG o WebP · máximo 5 MB</span>
+                  </label>
+                  <input class="visually-hidden" id="design-upload" type="file" accept="image/png,image/jpeg,image/webp">
+                  <p class="design-file-name" id="design-file-name" hidden></p>
+                  <p class="editor-helper" id="design-status" role="status" aria-live="polite">El archivo se usa solo en esta vista y no se sube al sitio.</p>
+                  <fieldset class="editor-control-group">
+                    <legend>Ubicación del diseño</legend>
+                    <div class="placement-options" role="group" aria-label="Elegir ubicación del diseño">
+                      <button type="button" data-placement="chest" aria-pressed="true" disabled>Pecho</button>
+                      <button type="button" data-placement="back" aria-pressed="false" disabled>Espalda</button>
+                      <button type="button" data-placement="sleeve" aria-pressed="false" disabled>Manga</button>
+                    </div>
+                  </fieldset>
+                  <label class="scale-control" for="design-scale">Tamaño del diseño <output id="design-scale-value" for="design-scale">100%</output></label>
+                  <input id="design-scale" type="range" min="60" max="150" value="100" disabled>
+                  <button class="remove-design-button" id="remove-design" type="button" disabled>Quitar diseño</button>
+                </section>
+
+                <section class="mockup-panel" id="panel-background" role="tabpanel" aria-labelledby="tab-background" data-editor-panel="background" hidden>
+                  <p class="panel-label">Escena de vista previa</p>
+                  <p class="editor-helper">Elige el fondo del visor.</p>
+                  <div class="background-options" role="group" aria-label="Elegir fondo del visor">
+                    <button class="background-swatch is-selected" type="button" data-background="soft" aria-label="Fondo claro suave" aria-pressed="true"><span></span>Suave</button>
+                    <button class="background-swatch" type="button" data-background="white" aria-label="Fondo blanco" aria-pressed="false"><span></span>Blanco</button>
+                    <button class="background-swatch" type="button" data-background="dark" aria-label="Fondo oscuro" aria-pressed="false"><span></span>Oscuro</button>
+                  </div>
+                  <p class="editor-helper">El fondo solo cambia la presentación del modelo.</p>
+                </section>
+              </div>
+            </aside>
+
+            <div class="mockup-viewer">
+              <div class="product-3d-stage" id="preview-3d" aria-busy="true" data-background="soft">
+                <div class="stage-topline">
+                  <span class="stage-tag"><span aria-hidden="true">✦</span> VISTA 3D</span>
+                  <span class="stage-hint">Arrastra para girar</span>
+                  <button class="stage-reset" id="reset-3d" type="button" disabled>Restablecer</button>
+                </div>
+                <canvas id="garment-canvas-3d" tabindex="0" role="img" aria-label="Prenda 3D referencial. Arrastra para girar; también puedes elegir una vista." aria-describedby="model-note"></canvas>
+                <img class="model-fallback" id="model-fallback" src="codigo/img/catalogo/playera-soccer-frente.svg" alt="Vista ilustrada de referencia de una prenda deportiva sin logotipos" hidden>
+                <div class="stage-status" id="stage-status" role="status" aria-live="polite">Preparando el vestidor 3D…</div>
+                <span class="stage-mark" aria-hidden="true">TMP</span>
+                <div class="stage-view-controls" role="group" aria-label="Cambiar vista del modelo 3D">
+                  <button type="button" data-view="front" aria-pressed="true">Frente</button>
+                  <button type="button" data-view="three-quarter" aria-pressed="false">3/4</button>
+                  <button type="button" data-view="side" aria-pressed="false">Perfil</button>
+                  <button type="button" data-view="back" aria-pressed="false">Espalda</button>
+                </div>
+              </div>
+              <div class="viewer-bottom-row">
+                <span>Modelo de referencia · rota para explorar</span>
+                <button class="download-preview-button" id="download-preview" type="button" disabled>Descargar vista PNG <span aria-hidden="true">↧</span></button>
+              </div>
             </div>
           </div>
-
-          <p class="model-disclaimer" id="model-note">La vista 3D es una maqueta referencial para explorar el diseño. El corte, color, tela y acabados de la prenda real pueden variar; confirma las opciones antes de pedir.</p>
-
-          <div class="design-controls" aria-label="Controles de previsualización 3D">
-            <fieldset class="control-group">
-              <legend>Color para previsualizar</legend>
-              <div class="color-options" role="group" aria-label="Elegir color del modelo">
-                <button class="color-swatch is-selected" type="button" data-color="#0B2D63" style="--swatch:#0B2D63" aria-label="Vista en azul marino" aria-pressed="true"></button>
-                <button class="color-swatch" type="button" data-color="#171A20" style="--swatch:#171A20" aria-label="Vista en negro" aria-pressed="false"></button>
-                <button class="color-swatch" type="button" data-color="#F2F1EC" style="--swatch:#F2F1EC" aria-label="Vista en claro" aria-pressed="false"></button>
-                <button class="color-swatch" type="button" data-color="#08783D" style="--swatch:#08783D" aria-label="Vista en verde" aria-pressed="false"></button>
-              </div>
-              <p>Los colores son una guía visual, no una confirmación de tonos disponibles.</p>
-            </fieldset>
-            <fieldset class="control-group pattern-group">
-              <legend>Patrón de muestra</legend>
-              <div class="pattern-options" role="group" aria-label="Elegir patrón del modelo">
-                <button class="pattern-button is-selected" type="button" data-pattern="solid" aria-pressed="true">Liso</button>
-                <button class="pattern-button" type="button" data-pattern="stripes" aria-pressed="false">Franjas</button>
-                <button class="pattern-button" type="button" data-pattern="blocks" aria-pressed="false">Bloques</button>
-              </div>
-              <p>La personalización mostrada es de referencia; consulta qué opciones se pueden producir.</p>
-            </fieldset>
-          </div>
+          <p class="model-disclaimer" id="model-note">La vista 3D es una maqueta referencial para explorar el diseño. El corte, color, tela y acabados de la prenda real pueden variar; confirma las opciones antes de pedir. Si agregas un gráfico, tendrás que adjuntarlo manualmente al chat de WhatsApp.</p>
           <p class="model-credit">Modelo base 3D: <a href="https://github.com/PetrovEvgeniy/T-Shirt-Builder" target="_blank" rel="noopener noreferrer">T-Shirt-Builder</a>, bajo licencia MIT. Detalles adicionales de sudadera y poncho son aproximaciones visuales.</p>
         </section>
 

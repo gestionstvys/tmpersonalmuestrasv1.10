@@ -2,6 +2,7 @@
   let THREE;
   let GLTFLoader;
   let OrbitControls;
+  let DecalGeometry;
   const products = {
     sudaderas: {
       slug: 'sudaderas',
@@ -60,13 +61,21 @@
   let camera;
   let controls;
   let clothMaterial;
-  let accentMaterial;
   let fabricTexture;
   let fabricCanvas;
   let fabricContext;
   let garmentRoot;
   let garmentBounds;
   let shirtMesh;
+  let decalTarget;
+  let textureLoader;
+  let designTexture;
+  let decalMesh;
+  let designName = '';
+  let designAspectRatio = 1;
+  let designPlacement = 'chest';
+  let designScale = 100;
+  let designLoadVersion = 0;
   let activeColor = defaultColor;
   let activePattern = 'solid';
   let renderFrame = 0;
@@ -81,6 +90,7 @@
     setText('product-price', 'Consultar');
     setText('product-availability', 'Disponibilidad por confirmar');
     setText('product-category', product.category);
+    setText('editor-product-name', product.title);
     setText('breadcrumb-category', product.category);
     setText('breadcrumb-product', product.title);
     setText('product-description', product.description);
@@ -115,7 +125,8 @@
     const selectedSizeText = selectedSize ? ` y quiero consultar la talla ${selectedSize}` : ' y quiero consultar tallas disponibles';
     const colorName = document.querySelector('.color-swatch.is-selected')?.getAttribute('aria-label')?.replace(/^Vista en /, '') || 'azul marino';
     const patternName = document.querySelector('.pattern-button.is-selected')?.textContent.trim().toLowerCase() || 'liso';
-    const message = `Hola, me interesa consultar ${product.title}${selectedSizeText}. ¿Me comparten precio, disponibilidad, materiales, medidas y opciones de envío? En el vestidor 3D probé una vista ${colorName} con patrón ${patternName}; entiendo que es una referencia visual y quiero confirmar qué opciones están disponibles.`;
+    const designNote = designName ? ' También probé un diseño propio en el vestidor; lo adjuntaré manualmente en el chat.' : '';
+    const message = `Hola, me interesa consultar ${product.title}${selectedSizeText}. ¿Me comparten precio, disponibilidad, materiales, medidas y opciones de envío? En el vestidor 3D probé una vista ${colorName} con patrón ${patternName}; entiendo que es una referencia visual y quiero confirmar qué opciones están disponibles.${designNote}`;
     return `https://api.whatsapp.com/send/?phone=5215611265205&text=${encodeURIComponent(message)}`;
   }
 
@@ -134,6 +145,7 @@
   }
 
   function drawFabric() {
+    if (!fabricContext || !fabricTexture) return;
     const size = 512;
     fabricContext.clearRect(0, 0, size, size);
     fabricContext.fillStyle = activeColor;
@@ -181,7 +193,7 @@
       const wrist = new THREE.Vector3(center.x + side * size.x * 0.52, cuffY, center.z);
       const cuff = new THREE.Vector3(wrist.x, cuffY + size.y * 0.035, center.z);
       addSleeve(shoulder, cuff, radius, clothMaterial);
-      addSleeve(cuff, wrist, radius * 1.04, accentMaterial);
+      addSleeve(cuff, wrist, radius * 1.04, clothMaterial);
     });
 
     const hoodShape = new THREE.Shape();
@@ -191,7 +203,7 @@
     hoodShape.bezierCurveTo(halfWidth * 0.68, size.y * 0.2, halfWidth * 1.2, size.y * 0.12, halfWidth, 0);
     hoodShape.quadraticCurveTo(0, -size.y * 0.05, -halfWidth, 0);
     const hood = addSceneObject(new THREE.Mesh(new THREE.ShapeGeometry(hoodShape, 24), clothMaterial));
-    hood.position.set(center.x, garmentBounds.min.y + size.y * 0.82, back);
+    hood.position.set(center.x, garmentBounds.min.y + size.y * 0.88, back);
     hood.rotation.y = Math.PI;
     hood.material.side = THREE.DoubleSide;
 
@@ -225,6 +237,158 @@
     });
     const piece = addSceneObject(new THREE.Mesh(geometry, clothMaterial));
     piece.position.set(center.x, center.y - height * 0.03, garmentBounds.min.z - depth * 0.45);
+    return piece;
+  }
+
+  function clearDecal(disposeTexture = false) {
+    if (decalMesh) {
+      scene?.remove(decalMesh);
+      decalMesh.geometry?.dispose();
+      decalMesh.material?.dispose();
+      decalMesh = null;
+    }
+    if (disposeTexture && designTexture) {
+      designTexture.dispose();
+      designTexture = null;
+    }
+  }
+
+  function placeDesign() {
+    if (!designTexture || !decalTarget || !DecalGeometry || !THREE) return;
+    if (decalMesh) {
+      scene.remove(decalMesh);
+      decalMesh.geometry.dispose();
+      decalMesh.material.dispose();
+      decalMesh = null;
+    }
+
+    decalTarget.updateMatrixWorld(true);
+    const bounds = new THREE.Box3().setFromObject(decalTarget);
+    const size = bounds.getSize(new THREE.Vector3());
+    const center = bounds.getCenter(new THREE.Vector3());
+    const sleeve = designPlacement === 'sleeve';
+    const widthLimit = size.x * (sleeve ? 0.14 : 0.25) * (designScale / 100);
+    const heightLimit = size.y * (sleeve ? 0.2 : 0.24) * (designScale / 100);
+    let decalWidth = widthLimit;
+    let decalHeight = decalWidth / Math.max(designAspectRatio, 0.15);
+    if (decalHeight > heightLimit) {
+      decalHeight = heightLimit;
+      decalWidth = decalHeight * Math.max(designAspectRatio, 0.15);
+    }
+    const depth = Math.max(size.z * 0.8, 0.035);
+    const y = designPlacement === 'back' ? center.y : center.y + size.y * (sleeve ? 0.12 : 0.13);
+    const x = sleeve ? center.x - size.x * 0.34 : center.x;
+    const isBack = designPlacement === 'back';
+    const z = isBack ? bounds.min.z - depth * 0.08 : bounds.max.z + depth * 0.08;
+    const position = new THREE.Vector3(x, y, z);
+    const orientation = new THREE.Euler(0, isBack ? Math.PI : 0, 0);
+    const decalSize = new THREE.Vector3(decalWidth, decalHeight, depth);
+
+    try {
+      const geometry = new DecalGeometry(decalTarget, position, orientation, decalSize);
+      const material = new THREE.MeshBasicMaterial({
+        map: designTexture,
+        transparent: true,
+        depthTest: true,
+        depthWrite: false,
+        polygonOffset: true,
+        polygonOffsetFactor: -4,
+        side: THREE.DoubleSide
+      });
+      decalMesh = new THREE.Mesh(geometry, material);
+      decalMesh.renderOrder = 3;
+      scene.add(decalMesh);
+      render();
+    } catch (error) {
+      console.warn('No se pudo colocar el diseño en la vista 3D.', error);
+      const designStatus = document.getElementById('design-status');
+      if (designStatus) designStatus.textContent = 'No se pudo colocar esta imagen en el modelo. Prueba con otro archivo.';
+    }
+  }
+
+  function setDesignControlsEnabled(enabled, hasDesign = false) {
+    document.querySelectorAll('[data-placement], #design-scale').forEach((control) => {
+      control.disabled = !enabled || !hasDesign;
+    });
+    const removeButton = document.getElementById('remove-design');
+    if (removeButton) removeButton.disabled = !enabled || !hasDesign;
+    const upload = document.getElementById('design-upload');
+    if (upload) upload.disabled = !enabled;
+    document.querySelector('.design-upload')?.classList.toggle('is-disabled', !enabled);
+  }
+
+  function removeDesign() {
+    designLoadVersion += 1;
+    clearDecal(true);
+    designName = '';
+    const fileInput = document.getElementById('design-upload');
+    if (fileInput) fileInput.value = '';
+    const name = document.getElementById('design-file-name');
+    if (name) {
+      name.textContent = '';
+      name.hidden = true;
+    }
+    const designStatus = document.getElementById('design-status');
+    if (designStatus) designStatus.textContent = 'El archivo se usa solo en esta vista y no se sube al sitio.';
+    setDesignControlsEnabled(Boolean(decalTarget));
+    updateWhatsAppLinks();
+    render();
+  }
+
+  async function loadDesign(file) {
+    const designStatus = document.getElementById('design-status');
+    if (!file) return;
+    const version = ++designLoadVersion;
+    if (!['image/png', 'image/jpeg', 'image/webp'].includes(file.type)) {
+      if (designStatus) designStatus.textContent = 'Elige un archivo PNG, JPG o WebP.';
+      document.getElementById('design-upload').value = '';
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      if (designStatus) designStatus.textContent = 'El archivo supera el límite de 5 MB.';
+      document.getElementById('design-upload').value = '';
+      return;
+    }
+    if (!textureLoader || !decalTarget) {
+      if (designStatus) designStatus.textContent = 'Espera a que termine de cargar el vestidor 3D.';
+      return;
+    }
+
+    if (designStatus) designStatus.textContent = 'Preparando imagen en esta vista…';
+    try {
+      const dataUrl = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = () => reject(new Error('No se pudo leer el archivo.'));
+        reader.readAsDataURL(file);
+      });
+      const image = await textureLoader.loadAsync(dataUrl);
+      if (version !== designLoadVersion) {
+        image.dispose();
+        return;
+      }
+      clearDecal(true);
+      designTexture = image;
+      designTexture.colorSpace = THREE.SRGBColorSpace;
+      designTexture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+      designAspectRatio = (image.image?.width || 1) / (image.image?.height || 1);
+      designName = file.name;
+      const name = document.getElementById('design-file-name');
+      if (name) {
+        name.textContent = file.name;
+        name.hidden = false;
+      }
+      setDesignControlsEnabled(true, true);
+      if (designStatus) designStatus.textContent = 'Vista referencial. Si pides por WhatsApp, adjunta el archivo manualmente.';
+      placeDesign();
+      updateWhatsAppLinks();
+    } catch (error) {
+      if (version === designLoadVersion) {
+        if (designStatus) designStatus.textContent = 'No se pudo abrir la imagen. Prueba con otro archivo.';
+        document.getElementById('design-upload').value = '';
+      }
+      console.warn('No se pudo cargar la imagen del diseño.', error);
+    }
   }
 
   function setView(name) {
@@ -251,7 +415,9 @@
     status.classList.remove('is-hidden');
     canvas.hidden = true;
     fallback.hidden = false;
-    document.querySelectorAll('.stage-view-controls button, .color-swatch, .pattern-button').forEach((button) => {
+    setDesignControlsEnabled(false);
+    document.querySelector('.mockup-workspace')?.classList.add('is-model-unavailable');
+    document.querySelectorAll('.stage-view-controls button, .color-swatch, .pattern-button, #design-upload, [data-placement], #design-scale, #remove-design, #reset-3d, #download-preview').forEach((button) => {
       button.disabled = true;
     });
   }
@@ -262,12 +428,13 @@
       const modules = await Promise.all([
         import(`${moduleBase}/build/three.module.js`),
         import(`${moduleBase}/examples/jsm/loaders/GLTFLoader.js`),
-        import(`${moduleBase}/examples/jsm/controls/OrbitControls.js`)
+        import(`${moduleBase}/examples/jsm/controls/OrbitControls.js`),
+        import(`${moduleBase}/examples/jsm/geometries/DecalGeometry.js`)
       ]);
-      [THREE, { GLTFLoader }, { OrbitControls }] = modules;
+      [THREE, { GLTFLoader }, { OrbitControls }, { DecalGeometry }] = modules;
       const width = Math.max(stage.clientWidth, 300);
       const height = Math.max(stage.clientHeight, 360);
-      renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
+      renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, preserveDrawingBuffer: true, powerPreference: 'high-performance' });
       renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
       renderer.setSize(width, height, false);
       renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -298,11 +465,11 @@
       fabricCanvas.height = 512;
       fabricContext = fabricCanvas.getContext('2d');
       fabricTexture = new THREE.CanvasTexture(fabricCanvas);
+      textureLoader = new THREE.TextureLoader();
       fabricTexture.colorSpace = THREE.SRGBColorSpace;
       fabricTexture.wrapS = THREE.RepeatWrapping;
       fabricTexture.wrapT = THREE.RepeatWrapping;
       clothMaterial = new THREE.MeshStandardMaterial({ map: fabricTexture, roughness: 0.82, metalness: 0, side: THREE.DoubleSide });
-      accentMaterial = new THREE.MeshStandardMaterial({ color: accentColor, roughness: 0.82, metalness: 0, side: THREE.DoubleSide });
 
       const gltf = await new GLTFLoader().loadAsync(modelUrl);
       garmentRoot = gltf.scene;
@@ -323,9 +490,11 @@
       if (product.model === 'hoodie') buildHoodieApproximation();
       if (product.model === 'poncho') {
         shirtMesh.visible = false;
-        buildPonchoApproximation();
-      }
+        decalTarget = buildPonchoApproximation();
+      } else decalTarget = shirtMesh;
       drawFabric();
+      setDesignControlsEnabled(true);
+      if (designTexture) placeDesign();
 
       const resizeObserver = new ResizeObserver(() => {
         const nextWidth = Math.max(stage.clientWidth, 300);
@@ -347,6 +516,8 @@
       });
       stage.setAttribute('aria-busy', 'false');
       status.classList.add('is-hidden');
+      document.getElementById('download-preview').disabled = false;
+      document.getElementById('reset-3d').disabled = false;
       setView('front');
       render();
     } catch (error) {
@@ -385,7 +556,110 @@
     document.querySelectorAll('.stage-view-controls button').forEach((button) => {
       button.addEventListener('click', () => setView(button.dataset.view));
     });
+
+    const tabs = [...document.querySelectorAll('[data-editor-tab]')];
+    function activateTab(tab, moveFocus = false) {
+      tabs.forEach((item) => {
+        const active = item === tab;
+        item.classList.toggle('is-active', active);
+        item.setAttribute('aria-selected', String(active));
+        item.tabIndex = active ? 0 : -1;
+      });
+      document.querySelectorAll('[data-editor-panel]').forEach((panel) => {
+        panel.hidden = panel.dataset.editorPanel !== tab.dataset.editorTab;
+      });
+      if (moveFocus) tab.focus();
+    }
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => activateTab(tab));
+      tab.addEventListener('keydown', (event) => {
+        let nextIndex = index;
+        if (event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
+        else if (event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
+        else if (event.key === 'Home') nextIndex = 0;
+        else if (event.key === 'End') nextIndex = tabs.length - 1;
+        else return;
+        event.preventDefault();
+        activateTab(tabs[nextIndex], true);
+      });
+    });
+
+    document.querySelectorAll('.background-swatch[data-background]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const background = button.dataset.background || 'soft';
+        stage.dataset.background = background;
+        document.querySelectorAll('.background-swatch[data-background]').forEach((item) => {
+          const selected = item === button;
+          item.classList.toggle('is-selected', selected);
+          item.setAttribute('aria-pressed', String(selected));
+        });
+      });
+    });
+
+    document.getElementById('design-upload').addEventListener('change', (event) => loadDesign(event.target.files?.[0]));
+    document.querySelectorAll('[data-placement]').forEach((button) => {
+      button.addEventListener('click', () => {
+        designPlacement = button.dataset.placement || 'chest';
+        document.querySelectorAll('[data-placement]').forEach((item) => {
+          const selected = item === button;
+          item.classList.toggle('is-selected', selected);
+          item.setAttribute('aria-pressed', String(selected));
+        });
+        placeDesign();
+      });
+    });
+    document.getElementById('design-scale').addEventListener('input', (event) => {
+      designScale = Number(event.target.value);
+      setText('design-scale-value', `${designScale}%`);
+      placeDesign();
+    });
+    document.getElementById('remove-design').addEventListener('click', removeDesign);
+    document.getElementById('reset-3d').addEventListener('click', () => {
+      document.querySelector('.color-swatch[data-color="#0B2D63"]')?.click();
+      document.querySelector('.pattern-button[data-pattern="solid"]')?.click();
+      document.querySelector('.background-swatch[data-background="soft"]')?.click();
+      designPlacement = 'chest';
+      designScale = 100;
+      setText('design-scale-value', '100%');
+      document.getElementById('design-scale').value = '100';
+      document.querySelectorAll('[data-placement]').forEach((item) => {
+        const selected = item.dataset.placement === 'chest';
+        item.classList.toggle('is-selected', selected);
+        item.setAttribute('aria-pressed', String(selected));
+      });
+      if (designTexture) placeDesign();
+      setView('front');
+    });
+    document.getElementById('download-preview').addEventListener('click', () => {
+      try {
+        renderer.render(scene, camera);
+        const exportCanvas = document.createElement('canvas');
+        exportCanvas.width = canvas.width;
+        exportCanvas.height = canvas.height;
+        const exportContext = exportCanvas.getContext('2d');
+        const bg = stage.dataset.background || 'soft';
+        const colors = bg === 'dark' ? ['#465160', '#202832'] : bg === 'white' ? ['#ffffff', '#ffffff'] : ['#ffffff', '#edf0f2'];
+        const gradient = exportContext.createRadialGradient(exportCanvas.width * 0.5, exportCanvas.height * 0.4, exportCanvas.width * 0.04, exportCanvas.width * 0.5, exportCanvas.height * 0.5, exportCanvas.width * 0.72);
+        gradient.addColorStop(0, colors[0]);
+        gradient.addColorStop(1, colors[1]);
+        exportContext.fillStyle = gradient;
+        exportContext.fillRect(0, 0, exportCanvas.width, exportCanvas.height);
+        exportContext.drawImage(canvas, 0, 0);
+        const link = document.createElement('a');
+        link.download = `tmp-${product.slug}-vista-3d.png`;
+        link.href = exportCanvas.toDataURL('image/png');
+        link.click();
+        status.textContent = 'Vista 3D descargada como PNG.';
+        status.classList.remove('is-hidden');
+        window.setTimeout(() => status.classList.add('is-hidden'), 3200);
+      } catch (error) {
+        console.warn('No se pudo descargar la vista 3D.', error);
+        status.textContent = 'No se pudo descargar la vista. Inténtalo otra vez.';
+        status.classList.remove('is-hidden');
+      }
+    });
     sizeSelect.addEventListener('change', updateWhatsAppLinks);
+    setDesignControlsEnabled(false);
   }
 
   updatePageContent();

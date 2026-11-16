@@ -7,6 +7,9 @@ Recursos y llamadas externas de las páginas públicas:
 - producto.html carga imágenes referenciales de recomendación desde Unsplash.
 - producto.js importa Three.js 0.186.1, GLTFLoader y OrbitControls desde
   jsDelivr; el modelo GLB también se sirve desde jsDelivr, fijado a un commit.
+- La imagen que una persona elija en el vestidor se procesa en memoria dentro
+  del navegador y no se envía al sitio. Para compartirla por WhatsApp debe
+  adjuntarla manualmente; el enlace solo incluye una nota sobre el diseño.
 - producto.js prepara un enlace de WhatsApp con producto y las opciones de
   talla, color y patrón elegidas; la persona revisa y envía el mensaje en
   WhatsApp.
