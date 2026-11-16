@@ -15,3 +15,9 @@ Referencias de imágenes:
 - logo_tmp.png: logotipo principal.
 - logo_neg_tmp.png: variante del logotipo.
 - Icono_tmp.png: favicon.
+
+Recordatorio de organización del código:
+- Cada página o elemento independiente tendrá su propia carpeta dentro de codigo/.
+- El CSS y JavaScript propios de cada página vivirán ahí; por ejemplo, home/ para
+  index.html y 404/ para 404.html. Al reubicar archivos, solo se actualizan sus
+  rutas en el HTML; los recursos compartidos permanecen en sus carpetas comunes.
