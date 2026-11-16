@@ -120,7 +120,6 @@ body { font-family: 'Inter', Arial, sans-serif; }
   transform-origin: center;
   animation: hero-photo-orbit 12s linear infinite;
 }
-.hero-photo-orbit.is-scroll-accelerated { animation-duration: 8s; }
 .hero-photo {
   display: block;
   width: 100%;
