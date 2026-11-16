@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explora la prenda en el vestidor 3D de Tu Marca Personal. Consulta precio, tallas y disponibilidad por WhatsApp.">
+  <meta name="theme-color" content="#0b2d63">
+  <title>Detalle de prenda | Tu Marca Personal</title>
+  <link rel="icon" type="image/png" href="codigo/img/logos/Icono_tmp.png">
+  <link rel="stylesheet" href="codigo/site-shell.css">
+  <link rel="stylesheet" href="codigo/menu/menu.css">
+  <link rel="stylesheet" href="codigo/footer/footer.css">
+  <link rel="stylesheet" href="codigo/floating%20buttons/floating_buttons.css">
+  <link rel="stylesheet" href="codigo/producto.css">
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js"}}</script>
+</head>
+<body id="top">
+  <a class="skip-link" href="#contenido-principal">Saltar al contenido</a>
+  <div id="site-header"></div>
+
+  <main class="page-content product-page" id="contenido-principal">
+    <div class="product-detail-container">
+      <nav class="product-breadcrumb" aria-label="Migas de pan">
+        <a href="catalogo.html">Catálogo</a><span aria-hidden="true">/</span>
+        <a id="breadcrumb-category" href="catalogo.html#sudaderas">Sudaderas</a><span aria-hidden="true">/</span>
+        <span id="breadcrumb-product" aria-current="page">Prenda</span>
+      </nav>
+
+      <div class="product-detail-grid">
+        <section class="product-visual-column" aria-label="Vista de la prenda">
+          <div class="product-3d-stage" id="preview-3d" aria-busy="true">
+            <div class="stage-topline">
+              <span class="stage-tag"><span aria-hidden="true">✦</span> VESTIDOR 3D</span>
+              <span class="stage-hint">Arrastra para girar</span>
+            </div>
+            <canvas id="garment-canvas-3d" tabindex="0" role="img" aria-label="Prenda 3D referencial. Arrastra para girar; también puedes elegir una vista." aria-describedby="model-note"></canvas>
+            <img class="model-fallback" id="model-fallback" src="codigo/img/catalogo/playera-soccer-frente.svg" alt="Vista ilustrada de referencia de una prenda deportiva sin logotipos" hidden>
+            <div class="stage-status" id="stage-status" role="status" aria-live="polite">Preparando el vestidor 3D…</div>
+            <span class="stage-mark" aria-hidden="true">TMP</span>
+            <div class="stage-view-controls" role="group" aria-label="Cambiar vista del modelo 3D">
+              <button type="button" data-view="front" aria-pressed="true">Frente</button>
+              <button type="button" data-view="three-quarter" aria-pressed="false">3/4</button>
+              <button type="button" data-view="side" aria-pressed="false">Perfil</button>
+              <button type="button" data-view="back" aria-pressed="false">Espalda</button>
+            </div>
+          </div>
+
+          <p class="model-disclaimer" id="model-note">La vista 3D es una maqueta referencial para explorar el diseño. El corte, color, tela y acabados de la prenda real pueden variar; confirma las opciones antes de pedir.</p>
+
+          <div class="design-controls" aria-label="Controles de previsualización 3D">
+            <fieldset class="control-group">
+              <legend>Color para previsualizar</legend>
+              <div class="color-options" role="group" aria-label="Elegir color del modelo">
+                <button class="color-swatch is-selected" type="button" data-color="#0B2D63" style="--swatch:#0B2D63" aria-label="Vista en azul marino" aria-pressed="true"></button>
+                <button class="color-swatch" type="button" data-color="#171A20" style="--swatch:#171A20" aria-label="Vista en negro" aria-pressed="false"></button>
+                <button class="color-swatch" type="button" data-color="#F2F1EC" style="--swatch:#F2F1EC" aria-label="Vista en claro" aria-pressed="false"></button>
+                <button class="color-swatch" type="button" data-color="#08783D" style="--swatch:#08783D" aria-label="Vista en verde" aria-pressed="false"></button>
+              </div>
+              <p>Los colores son una guía visual, no una confirmación de tonos disponibles.</p>
+            </fieldset>
+            <fieldset class="control-group pattern-group">
+              <legend>Patrón de muestra</legend>
+              <div class="pattern-options" role="group" aria-label="Elegir patrón del modelo">
+                <button class="pattern-button is-selected" type="button" data-pattern="solid" aria-pressed="true">Liso</button>
+                <button class="pattern-button" type="button" data-pattern="stripes" aria-pressed="false">Franjas</button>
+                <button class="pattern-button" type="button" data-pattern="blocks" aria-pressed="false">Bloques</button>
+              </div>
+              <p>La personalización mostrada es de referencia; consulta qué opciones se pueden producir.</p>
+            </fieldset>
+          </div>
+          <p class="model-credit">Modelo base 3D: <a href="https://github.com/PetrovEvgeniy/T-Shirt-Builder" target="_blank" rel="noopener noreferrer">T-Shirt-Builder</a>, bajo licencia MIT. Detalles adicionales de sudadera y poncho son aproximaciones visuales.</p>
+        </section>
+
+        <aside class="product-buy-panel" aria-labelledby="product-title">
+          <p class="product-category-label"><span aria-hidden="true"></span><span id="product-category">Sudaderas</span></p>
+          <h1 id="product-title">Sudadera Deportiva Estilo Americano</h1>
+          <div class="product-price-line"><span>Precio</span><strong id="product-price">Consultar</strong></div>
+          <p class="availability-line"><span class="availability-dot" aria-hidden="true"></span><span id="product-availability">Disponibilidad por confirmar</span></p>
+
+          <label class="size-label" for="product-size">Talla que quieres consultar</label>
+          <select class="size-select" id="product-size" name="talla">
+            <option value="">Elegir talla para consultar</option>
+            <option value="XS">XS — consultar disponibilidad</option>
+            <option value="S">S — consultar disponibilidad</option>
+            <option value="M">M — consultar disponibilidad</option>
+            <option value="L">L — consultar disponibilidad</option>
+            <option value="XL">XL — consultar disponibilidad</option>
+            <option value="XXL">XXL — consultar disponibilidad</option>
+          </select>
+          <p class="size-help">La selección sirve para preguntar; no confirma existencias.</p>
+
+          <div class="product-order-dock">
+            <a class="product-whatsapp-button" id="desktop-whatsapp" href="https://api.whatsapp.com/send/?phone=5215611265205" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.7a8.5 8.5 0 0 1-12.6 7.4L3 20l.9-4.7a8.5 8.5 0 1 1 16.6-3.6Z"></path><path d="M8.7 8.2c.2-.5.4-.5.7-.5h.5c.2 0 .4.1.5.4l.7 1.7c.1.2 0 .4-.1.6l-.5.6c-.2.2-.2.4 0 .6.5.9 1.3 1.7 2.2 2.2.2.1.4.1.6-.1l.7-.8c.2-.2.4-.2.7-.1l1.6.8c.3.1.4.3.4.5 0 .3-.2 1.2-.8 1.6-.5.4-1.1.6-1.8.4-1.1-.2-2.4-.8-3.7-2-1.5-1.3-2.3-2.8-2.6-3.9-.2-.8.1-1.5.4-2Z"></path></svg>
+              Pedir ahora por WhatsApp <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <div class="purchase-notes">
+            <p><span aria-hidden="true">✓</span> Precio y disponibilidad se confirman antes del pedido.</p>
+            <p><span aria-hidden="true">✓</span> Pregunta por opciones de personalización.</p>
+          </div>
+
+          <div class="product-quick-facts">
+            <details open>
+              <summary>Descripción</summary>
+              <p id="product-description">Una prenda personalizable con una vista 3D de referencia.</p>
+            </details>
+            <details>
+              <summary>Materiales y cuidados</summary>
+              <dl class="fact-list">
+                <div><dt>Material</dt><dd>Por confirmar para el modelo disponible.</dd></div>
+                <div><dt>Cuidados</dt><dd>Consulta las indicaciones de la prenda antes de lavarla.</dd></div>
+              </dl>
+            </details>
+            <details>
+              <summary>Disponibilidad y envío</summary>
+              <dl class="fact-list">
+                <div><dt>Existencias</dt><dd>Por confirmar por WhatsApp.</dd></div>
+                <div><dt>Cobertura y costo</dt><dd>Consulta opciones de envío antes de realizar el pedido.</dd></div>
+                <div><dt>Tiempo de entrega</dt><dd>Por confirmar según la prenda y el destino.</dd></div>
+              </dl>
+            </details>
+            <details>
+              <summary>Cambios y devoluciones</summary>
+              <p>Consulta las condiciones vigentes antes de comprar. <a href="ayuda.html#cambios">Ver información de ayuda</a>.</p>
+            </details>
+          </div>
+        </aside>
+      </div>
+
+      <section class="measure-section" aria-labelledby="measure-title">
+        <div class="section-heading">
+          <p class="section-kicker">Elige con más información</p>
+          <h2 id="measure-title">Guía de tallas</h2>
+          <p>Las medidas del modelo todavía deben confirmarse. Escríbenos para revisar la tabla correspondiente a la prenda que te interesa.</p>
+        </div>
+        <div class="measure-table-wrap" tabindex="0" aria-label="Tabla de medidas pendientes de confirmación; desplázate horizontalmente si hace falta">
+          <table>
+            <caption>Medidas de referencia por confirmar antes de publicar</caption>
+            <thead><tr><th scope="col">Talla consultada</th><th scope="col">Pecho</th><th scope="col">Largo</th><th scope="col">Manga</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">XS</th><td>Por confirmar</td><td>Por confirmar</td><td>Por confirmar</td></tr>
+              <tr><th scope="row">S</th><td>Por confirmar</td><td>Por confirmar</td><td>Por confirmar</td></tr>
+              <tr><th scope="row">M</th><td>Por confirmar</td><td>Por confirmar</td><td>Por confirmar</td></tr>
+              <tr><th scope="row">L</th><td>Por confirmar</td><td>Por confirmar</td><td>Por confirmar</td></tr>
+              <tr><th scope="row">XL</th><td>Por confirmar</td><td>Por confirmar</td><td>Por confirmar</td></tr>
+              <tr><th scope="row">XXL</th><td>Por confirmar</td><td>Por confirmar</td><td>Por confirmar</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="related-section" aria-labelledby="related-title">
+        <div class="section-heading related-heading">
+          <div><p class="section-kicker">Completa tu idea</p><h2 id="related-title">También te puede gustar</h2></div>
+          <a href="catalogo.html">Ver todo el catálogo <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="related-grid" id="related-products"></div>
+      </section>
+    </div>
+  </main>
+
+  <a class="mobile-product-cta" id="mobile-whatsapp" href="https://api.whatsapp.com/send/?phone=5215611265205" target="_blank" rel="noopener noreferrer">
+    <span>Pedir ahora por WhatsApp</span><span aria-hidden="true">↗</span>
+  </a>
+  <div id="site-footer"></div>
+  <div id="site-floating-buttons"></div>
+  <script defer src="codigo/site-shell.js"></script>
+  <script defer src="codigo/menu/menu.js"></script>
+  <script defer src="codigo/footer/footer.js"></script>
+  <script defer src="codigo/floating%20buttons/floating_buttons.js"></script>
+  <script defer src="codigo/producto.js"></script>
+</body>
+</html>

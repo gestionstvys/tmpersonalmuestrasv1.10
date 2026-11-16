@@ -77,7 +77,7 @@
     </footer>`;
 
   const floatingButtonsMarkup = `
-    <nav class="button-stack" aria-label="Redes sociales">
+    <nav class="button-stack" aria-label="Redes sociales y contacto">
       <div class="btn-wrapper">
         <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" class="orb-btn btn-tiktok" aria-label="TikTok">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.04-.5z"></path></svg>
@@ -95,6 +95,18 @@
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
         </a>
         <span class="btn-label">Facebook</span>
+      </div>
+      <div class="btn-wrapper">
+        <a href="https://api.whatsapp.com/send/?phone=5215611265205" target="_blank" rel="noopener noreferrer" class="orb-btn btn-whatsapp" aria-label="WhatsApp: contacto directo y rápido">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.7a8.5 8.5 0 0 1-12.6 7.4L3 20l.9-4.7a8.5 8.5 0 1 1 16.6-3.6Z"></path><path d="M8.7 8.2c.2-.5.4-.5.7-.5h.5c.2 0 .4.1.5.4l.7 1.7c.1.2 0 .4-.1.6l-.5.6c-.2.2-.2.4 0 .6.5.9 1.3 1.7 2.2 2.2.2.1.4.1.6-.1l.7-.8c.2-.2.4-.2.7-.1l1.6.8c.3.1.4.3.4.5 0 .3-.2 1.2-.8 1.6-.5.4-1.1.6-1.8.4-1.1-.2-2.4-.8-3.7-2-1.5-1.3-2.3-2.8-2.6-3.9-.2-.8.1-1.5.4-2Z"></path></svg>
+        </a>
+        <span class="btn-label">WhatsApp · Contacto directo y rápido</span>
+      </div>
+      <div class="btn-wrapper">
+        <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;su=Contacto%20directo%20y%20r%C3%A1pido" target="_blank" rel="noopener noreferrer" class="orb-btn btn-gmail" aria-label="Gmail: contacto directo y rápido; destinatario por definir">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6"></path></svg>
+        </a>
+        <span class="btn-label">Gmail · Contacto directo y rápido</span>
       </div>
     </nav>`;
 

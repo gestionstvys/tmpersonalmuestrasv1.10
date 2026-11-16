@@ -3,32 +3,211 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Catálogo | Tu Marca Personal</title>
+  <meta name="description" content="Explora sudaderas, playeras de soccer, playeras básicas y ponchos. Consulta precio, tallas y disponibilidad por WhatsApp.">
+  <title>Catálogo de ropa | Tu Marca Personal</title>
   <link rel="icon" type="image/png" href="codigo/img/logos/Icono_tmp.png">
   <link rel="stylesheet" href="codigo/site-shell.css">
   <link rel="stylesheet" href="codigo/menu/menu.css">
   <link rel="stylesheet" href="codigo/footer/footer.css">
   <link rel="stylesheet" href="codigo/floating%20buttons/floating_buttons.css">
+  <link rel="stylesheet" href="codigo/catalogo.css">
 </head>
 <body id="top">
   <a class="skip-link" href="#contenido-principal">Saltar al contenido</a>
   <div id="site-header"></div>
-  <main id="contenido-principal" class="page-content">
-    <h1 id="catalogo">Catálogo General</h1>
-    <section id="sudaderas">
-      <h2>Sudaderas MGL</h2>
-      <p>Contenido pendiente de publicación.</p>
-    </section>
-    <section id="soccer">
-      <h2>Playeras de Soccer</h2>
-      <p>Contenido pendiente de publicación.</p>
-    </section>
+
+  <main id="contenido-principal" class="page-content catalog-page">
+    <header class="catalog-hero">
+      <div class="catalog-container">
+        <p class="catalog-eyebrow"><span aria-hidden="true"></span> Tu estilo, tu marca</p>
+        <h1>Catálogo</h1>
+        <p class="catalog-intro">Encuentra tu próxima prenda favorita y pregunta por las opciones para personalizarla.</p>
+        <nav class="category-nav" aria-label="Categorías del catálogo">
+          <a href="#sudaderas">Sudaderas <span aria-hidden="true">↘</span></a>
+          <a href="#soccer">Playeras de Soccer <span aria-hidden="true">↘</span></a>
+          <a href="#basicas">Playeras Básicas <span aria-hidden="true">↘</span></a>
+          <a href="#ponchos">Ponchos <span aria-hidden="true">↘</span></a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="catalog-container catalog-layout">
+      <aside class="catalog-filter-column" aria-label="Filtros de productos">
+        <details class="filter-panel" id="filter-panel">
+          <summary>Filtrar productos <span class="filter-chevron" aria-hidden="true">⌄</span></summary>
+          <form class="filter-form" id="catalog-filters">
+            <label for="filter-search">Buscar</label>
+            <input id="filter-search" name="buscar" type="search" placeholder="Ej. sudadera">
+
+            <label for="filter-category">Categoría</label>
+            <select id="filter-category" name="categoria">
+              <option value="">Todas las categorías</option>
+              <option value="sudaderas">Sudaderas</option>
+              <option value="soccer">Playeras de Soccer</option>
+              <option value="basicas">Playeras Básicas</option>
+              <option value="ponchos">Ponchos</option>
+            </select>
+
+            <label for="filter-size">Talla</label>
+            <select id="filter-size" name="talla">
+              <option value="">Cualquier talla</option>
+              <option value="XS">XS</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+              <option value="XXL">XXL</option>
+            </select>
+
+            <label for="filter-price">Precio máximo</label>
+            <div class="price-input-wrap">
+              <span aria-hidden="true">$</span>
+              <input id="filter-price" name="precio" type="number" min="0" step="50" inputmode="numeric" placeholder="MXN">
+              <span>MXN</span>
+            </div>
+
+            <label for="filter-availability">Disponibilidad</label>
+            <select id="filter-availability" name="disponibilidad">
+              <option value="">Cualquiera</option>
+              <option value="confirmada">Disponible confirmada</option>
+              <option value="consultar">Consultar disponibilidad</option>
+            </select>
+
+            <button class="filter-reset" type="reset">Limpiar filtros <span aria-hidden="true">↺</span></button>
+            <p class="filter-note">El precio, las tallas y las existencias se confirman por WhatsApp.</p>
+          </form>
+        </details>
+      </aside>
+
+      <section class="catalog-results" id="productos" aria-labelledby="products-heading">
+        <div class="results-heading">
+          <div>
+            <p class="results-kicker">Hechas para llevar tu estilo</p>
+            <h2 id="products-heading">Prendas para explorar</h2>
+          </div>
+          <p class="results-count" id="results-count" aria-live="polite">4 prendas</p>
+        </div>
+
+        <div class="product-grid" id="product-grid">
+          <article class="product-card" id="sudaderas" data-product-card data-category="sudaderas" data-search="sudadera deportiva estilo americano personalizable colección fútbol americano" data-sizes="" data-price="" data-availability="consultar">
+            <div class="product-gallery" data-product-gallery>
+              <a class="product-image-link" href="https://unsplash.com/photos/a-young-man-in-a-black-hooded-sweatshirt-LA6sNq0CXTo" target="_blank" rel="noopener noreferrer" aria-label="Abrir imagen referencial de sudadera en Unsplash">
+                <img class="product-main-image" src="https://images.unsplash.com/photo-1741875379341-7d20aadb02c2?auto=format&amp;fit=crop&amp;w=640&amp;q=82" srcset="https://images.unsplash.com/photo-1741875379341-7d20aadb02c2?auto=format&amp;fit=crop&amp;w=360&amp;q=82 360w, https://images.unsplash.com/photo-1741875379341-7d20aadb02c2?auto=format&amp;fit=crop&amp;w=640&amp;q=82 640w, https://images.unsplash.com/photo-1741875379341-7d20aadb02c2?auto=format&amp;fit=crop&amp;w=960&amp;q=82 960w" sizes="(max-width: 640px) 92vw, (max-width: 1000px) 42vw, 28vw" width="900" height="1100" alt="Fotografía referencial de una sudadera negra" loading="lazy" decoding="async" data-image-id="photo-1741875379341-7d20aadb02c2" data-image-alt="Fotografía referencial de una sudadera negra">
+                <span class="image-note">Foto referencial</span>
+              </a>
+              <div class="product-thumbnails" role="group" aria-label="Más imágenes referenciales de sudadera">
+                <button class="product-thumb is-active" type="button" aria-label="Ver sudadera negra, fotografía 1" aria-pressed="true" data-image-id="photo-1741875379341-7d20aadb02c2" data-photo-href="https://unsplash.com/photos/a-young-man-in-a-black-hooded-sweatshirt-LA6sNq0CXTo" data-image-alt="Fotografía referencial de una sudadera negra"><img src="https://images.unsplash.com/photo-1741875379341-7d20aadb02c2?auto=format&amp;fit=crop&amp;w=160&amp;h=160&amp;q=75" width="72" height="72" alt="" loading="lazy" decoding="async"></button>
+                <button class="product-thumb" type="button" aria-label="Ver sudadera oscura, fotografía 2" aria-pressed="false" data-image-id="photo-1494578924983-b472e391e1fa" data-photo-href="https://unsplash.com/photos/photo-of-person-wearing-black-pullover-hoodie-0hTIOBAm20g" data-image-alt="Fotografía referencial de una persona con sudadera oscura"><img src="https://images.unsplash.com/photo-1494578924983-b472e391e1fa?auto=format&amp;fit=crop&amp;w=160&amp;h=160&amp;q=75" width="72" height="72" alt="" loading="lazy" decoding="async"></button>
+                <button class="product-thumb" type="button" aria-label="Ver sudadera negra, fotografía 3" aria-pressed="false" data-image-id="photo-1530475329205-1c5333ae40fb" data-photo-href="https://unsplash.com/photos/person-wearing-black-pullover-hoodie-3Byn8-knjvw" data-image-alt="Fotografía referencial de una sudadera negra"><img src="https://images.unsplash.com/photo-1530475329205-1c5333ae40fb?auto=format&amp;fit=crop&amp;w=160&amp;h=160&amp;q=75" width="72" height="72" alt="" loading="lazy" decoding="async"></button>
+              </div>
+            </div>
+            <div class="product-info">
+              <p class="product-category"><span class="category-dot" aria-hidden="true"></span> Sudaderas <span class="product-badge">Producto estrella</span></p>
+              <h3>Sudadera Deportiva Estilo Americano</h3>
+              <p class="product-price"><span>Precio</span><strong>Consultar</strong></p>
+              <p class="product-size"><span>Tallas</span><strong>Consulta las disponibles</strong></p>
+              <p class="product-stock">Disponibilidad por confirmar</p>
+              <div class="product-actions">
+                <a class="order-button" href="https://api.whatsapp.com/send/?phone=5215611265205&amp;text=Hola%2C%20me%20interesa%20la%20Sudadera%20Deportiva%20Estilo%20Americano.%20%C2%BFMe%20comparten%20precio%2C%20tallas%20y%20disponibilidad%3F" target="_blank" rel="noopener noreferrer">Pedir por WhatsApp <span aria-hidden="true">↗</span></a>
+                <a class="product-details-link" href="producto.html?producto=sudaderas">Ver detalles <span aria-hidden="true">↗</span></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" id="soccer" data-product-card data-category="soccer" data-search="playera soccer personalizable fútbol jersey deportiva" data-sizes="" data-price="" data-availability="consultar">
+            <div class="product-gallery" data-product-gallery>
+              <a class="product-image-link" href="codigo/img/catalogo/playera-soccer-frente.svg" target="_blank" rel="noopener noreferrer" aria-label="Abrir ilustración referencial de playera de soccer">
+                <img class="product-main-image" src="codigo/img/catalogo/playera-soccer-frente.svg" sizes="(max-width: 640px) 92vw, (max-width: 1000px) 42vw, 28vw" width="800" height="720" alt="Ilustración referencial de playera deportiva genérica, sin logos" loading="lazy" decoding="async" data-image-id="codigo/img/catalogo/playera-soccer-frente.svg" data-image-alt="Ilustración referencial de playera deportiva genérica, sin logos">
+                <span class="image-note">Vista ilustrada</span>
+              </a>
+              <div class="product-thumbnails" role="group" aria-label="Más imágenes referenciales de playera de soccer">
+                <button class="product-thumb is-active" type="button" aria-label="Ver playera de soccer, vista frontal" aria-pressed="true" data-image-id="codigo/img/catalogo/playera-soccer-frente.svg" data-photo-href="codigo/img/catalogo/playera-soccer-frente.svg" data-image-alt="Ilustración referencial de playera deportiva genérica, sin logos"><img src="codigo/img/catalogo/playera-soccer-frente.svg" width="72" height="72" alt="" loading="lazy" decoding="async"></button>
+                <button class="product-thumb" type="button" aria-label="Ver playera de soccer, vista posterior" aria-pressed="false" data-image-id="codigo/img/catalogo/playera-soccer-espalda.svg" data-photo-href="codigo/img/catalogo/playera-soccer-espalda.svg" data-image-alt="Ilustración posterior de playera deportiva lisa, sin logos"><img src="codigo/img/catalogo/playera-soccer-espalda.svg" width="72" height="72" alt="" loading="lazy" decoding="async"></button>
+                <button class="product-thumb" type="button" aria-label="Ver detalle de tela deportiva" aria-pressed="false" data-image-id="codigo/img/catalogo/playera-soccer-textura.svg" data-photo-href="codigo/img/catalogo/playera-soccer-textura.svg" data-image-alt="Ilustración de detalle de tela deportiva sin marcas"><img src="codigo/img/catalogo/playera-soccer-textura.svg" width="72" height="72" alt="" loading="lazy" decoding="async"></button>
+              </div>
+            </div>
+            <div class="product-info">
+              <p class="product-category"><span class="category-dot" aria-hidden="true"></span> Playeras de Soccer</p>
+              <h3>Playera Soccer Personalizable</h3>
+              <p class="product-price"><span>Precio</span><strong>Consultar</strong></p>
+              <p class="product-size"><span>Tallas</span><strong>Consulta las disponibles</strong></p>
+              <p class="product-stock">Disponibilidad por confirmar</p>
+              <div class="product-actions">
+                <a class="order-button" href="https://api.whatsapp.com/send/?phone=5215611265205&amp;text=Hola%2C%20me%20interesa%20la%20Playera%20Soccer%20Personalizable.%20%C2%BFMe%20comparten%20precio%2C%20tallas%20y%20disponibilidad%3F" target="_blank" rel="noopener noreferrer">Pedir por WhatsApp <span aria-hidden="true">↗</span></a>
+                <a class="product-details-link" href="producto.html?producto=soccer">Ver detalles <span aria-hidden="true">↗</span></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" id="basicas" data-product-card data-category="basicas" data-search="playera básica camiseta personalizable uso diario" data-sizes="" data-price="" data-availability="consultar">
+            <div class="product-gallery" data-product-gallery>
+              <a class="product-image-link" href="https://unsplash.com/photos/mens-white-crew-neck-plain-t-shirt-hYskLMtgGgY" target="_blank" rel="noopener noreferrer" aria-label="Abrir imagen referencial de playera básica en Unsplash">
+                <img class="product-main-image" src="https://images.unsplash.com/photo-1560800125-e06c763fdc2c?auto=format&amp;fit=crop&amp;w=640&amp;q=82" srcset="https://images.unsplash.com/photo-1560800125-e06c763fdc2c?auto=format&amp;fit=crop&amp;w=360&amp;q=82 360w, https://images.unsplash.com/photo-1560800125-e06c763fdc2c?auto=format&amp;fit=crop&amp;w=640&amp;q=82 640w, https://images.unsplash.com/photo-1560800125-e06c763fdc2c?auto=format&amp;fit=crop&amp;w=960&amp;q=82 960w" sizes="(max-width: 640px) 92vw, (max-width: 1000px) 42vw, 28vw" width="900" height="1100" alt="Fotografía referencial de una playera básica lisa" loading="lazy" decoding="async" data-image-id="photo-1560800125-e06c763fdc2c" data-image-alt="Fotografía referencial de una playera básica lisa">
+                <span class="image-note">Foto referencial</span>
+              </a>
+              <div class="product-thumbnails" role="group" aria-label="Más imágenes referenciales de playera básica">
+                <button class="product-thumb is-active" type="button" aria-label="Ver playera básica, fotografía 1" aria-pressed="true" data-image-id="photo-1560800125-e06c763fdc2c" data-photo-href="https://unsplash.com/photos/mens-white-crew-neck-plain-t-shirt-hYskLMtgGgY" data-image-alt="Fotografía referencial de una playera básica lisa"><img src="https://images.unsplash.com/photo-1560800125-e06c763fdc2c?auto=format&amp;fit=crop&amp;w=160&amp;h=160&amp;q=75" width="72" height="72" alt="" loading="lazy" decoding="async"></button>
+                <button class="product-thumb" type="button" aria-label="Ver playera básica, fotografía 2" aria-pressed="false" data-image-id="photo-1778671394516-8270eac13c42" data-photo-href="https://unsplash.com/photos/a-plain-white-t-shirt-hangs-on-a-wooden-hanger-8ACmRoleM24" data-image-alt="Fotografía referencial de una playera lisa en gancho"><img src="https://images.unsplash.com/photo-1778671394516-8270eac13c42?auto=format&amp;fit=crop&amp;w=160&amp;h=160&amp;q=75" width="72" height="72" alt="" loading="lazy" decoding="async"></button>
+                <button class="product-thumb" type="button" aria-label="Ver playera básica, fotografía 3" aria-pressed="false" data-image-id="photo-1722310752951-4d459d28c678" data-photo-href="https://unsplash.com/photos/a-white-t-shirt-hanging-on-a-white-wall-fiA7sq2PdnQ" data-image-alt="Fotografía referencial de una playera lisa"><img src="https://images.unsplash.com/photo-1722310752951-4d459d28c678?auto=format&amp;fit=crop&amp;w=160&amp;h=160&amp;q=75" width="72" height="72" alt="" loading="lazy" decoding="async"></button>
+              </div>
+            </div>
+            <div class="product-info">
+              <p class="product-category"><span class="category-dot" aria-hidden="true"></span> Playeras Básicas</p>
+              <h3>Playera Básica</h3>
+              <p class="product-price"><span>Precio</span><strong>Consultar</strong></p>
+              <p class="product-size"><span>Tallas</span><strong>Consulta las disponibles</strong></p>
+              <p class="product-stock">Disponibilidad por confirmar</p>
+              <div class="product-actions">
+                <a class="order-button" href="https://api.whatsapp.com/send/?phone=5215611265205&amp;text=Hola%2C%20me%20interesa%20una%20Playera%20B%C3%A1sica.%20%C2%BFMe%20comparten%20precio%2C%20tallas%20y%20disponibilidad%3F" target="_blank" rel="noopener noreferrer">Pedir por WhatsApp <span aria-hidden="true">↗</span></a>
+                <a class="product-details-link" href="producto.html?producto=basicas">Ver detalles <span aria-hidden="true">↗</span></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card" id="ponchos" data-product-card data-category="ponchos" data-search="poncho personalizable" data-sizes="" data-price="" data-availability="consultar">
+            <div class="product-gallery" data-product-gallery>
+              <a class="product-image-link" href="https://unsplash.com/photos/elderly-man-in-poncho-and-cap-on-city-street-x__yPI3UJuA" target="_blank" rel="noopener noreferrer" aria-label="Abrir imagen referencial de poncho en Unsplash">
+                <img class="product-main-image" src="https://images.unsplash.com/photo-1761253468214-8a1a7edd1a7a?auto=format&amp;fit=crop&amp;w=640&amp;q=82" srcset="https://images.unsplash.com/photo-1761253468214-8a1a7edd1a7a?auto=format&amp;fit=crop&amp;w=360&amp;q=82 360w, https://images.unsplash.com/photo-1761253468214-8a1a7edd1a7a?auto=format&amp;fit=crop&amp;w=640&amp;q=82 640w, https://images.unsplash.com/photo-1761253468214-8a1a7edd1a7a?auto=format&amp;fit=crop&amp;w=960&amp;q=82 960w" sizes="(max-width: 640px) 92vw, (max-width: 1000px) 42vw, 28vw" width="900" height="1100" alt="Fotografía referencial de una persona con poncho" loading="lazy" decoding="async" data-image-id="photo-1761253468214-8a1a7edd1a7a" data-image-alt="Fotografía referencial de una persona con poncho">
+                <span class="image-note">Foto referencial</span>
+              </a>
+              <div class="product-thumbnails" role="group" aria-label="Más imágenes referenciales de poncho">
+                <button class="product-thumb is-active" type="button" aria-label="Ver poncho, fotografía 1" aria-pressed="true" data-image-id="photo-1761253468214-8a1a7edd1a7a" data-photo-href="https://unsplash.com/photos/elderly-man-in-poncho-and-cap-on-city-street-x__yPI3UJuA" data-image-alt="Fotografía referencial de una persona con poncho"><img src="https://images.unsplash.com/photo-1761253468214-8a1a7edd1a7a?auto=format&amp;fit=crop&amp;w=160&amp;h=160&amp;q=75" width="72" height="72" alt="" loading="lazy" decoding="async"></button>
+                <button class="product-thumb" type="button" aria-label="Ver prenda tipo poncho, fotografía 2" aria-pressed="false" data-image-id="photo-1634510019952-a1a82d969f43" data-photo-href="https://unsplash.com/photos/a-woman-in-a-hijab-carrying-a-purse-6vS5vwSfjvY" data-image-alt="Fotografía referencial de prenda tipo poncho"><img src="https://images.unsplash.com/photo-1634510019952-a1a82d969f43?auto=format&amp;fit=crop&amp;w=160&amp;h=160&amp;q=75" width="72" height="72" alt="" loading="lazy" decoding="async"></button>
+                <button class="product-thumb" type="button" aria-label="Ver prenda tipo capa, fotografía 3" aria-pressed="false" data-image-id="photo-1699653675069-170b685784cd" data-photo-href="https://unsplash.com/photos/a-woman-walking-down-a-road-with-a-white-cape-over-her-head-YSaMt3R1IPk" data-image-alt="Fotografía referencial de prenda tipo capa"><img src="https://images.unsplash.com/photo-1699653675069-170b685784cd?auto=format&amp;fit=crop&amp;w=160&amp;h=160&amp;q=75" width="72" height="72" alt="" loading="lazy" decoding="async"></button>
+              </div>
+            </div>
+            <div class="product-info">
+              <p class="product-category"><span class="category-dot" aria-hidden="true"></span> Ponchos</p>
+              <h3>Poncho</h3>
+              <p class="product-price"><span>Precio</span><strong>Consultar</strong></p>
+              <p class="product-size"><span>Tallas</span><strong>Consulta las disponibles</strong></p>
+              <p class="product-stock">Disponibilidad por confirmar</p>
+              <div class="product-actions">
+                <a class="order-button" href="https://api.whatsapp.com/send/?phone=5215611265205&amp;text=Hola%2C%20me%20interesa%20un%20poncho.%20%C2%BFMe%20comparten%20precio%2C%20tallas%20y%20disponibilidad%3F" target="_blank" rel="noopener noreferrer">Pedir por WhatsApp <span aria-hidden="true">↗</span></a>
+                <a class="product-details-link" href="producto.html?producto=ponchos">Ver detalles <span aria-hidden="true">↗</span></a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="empty-results" id="empty-results" hidden>
+          <span class="empty-icon" aria-hidden="true">⌕</span>
+          <h3>No hay prendas que coincidan todavía</h3>
+          <p>Precios, tallas y existencias se confirman por WhatsApp. Podemos ayudarte a encontrar una opción.</p>
+          <a href="https://api.whatsapp.com/send/?phone=5215611265205&amp;text=Hola%2C%20quiero%20consultar%20prendas%2C%20precios%2C%20tallas%20y%20disponibilidad." target="_blank" rel="noopener noreferrer">Consultar por WhatsApp <span aria-hidden="true">↗</span></a>
+        </div>
+
+        <p class="catalog-photo-note">Las fotos de sudaderas, playeras básicas y ponchos son referenciales y enlazan a sus fuentes en Unsplash. La playera de soccer se muestra con ilustraciones originales sin insignias. Consulta por WhatsApp el modelo final, precio, tallas y disponibilidad.</p>
+      </section>
+    </div>
   </main>
+
   <div id="site-footer"></div>
   <div id="site-floating-buttons"></div>
   <script defer src="codigo/site-shell.js"></script>
   <script defer src="codigo/menu/menu.js"></script>
   <script defer src="codigo/footer/footer.js"></script>
   <script defer src="codigo/floating%20buttons/floating_buttons.js"></script>
+  <script defer src="codigo/catalogo.js"></script>
 </body>
 </html>

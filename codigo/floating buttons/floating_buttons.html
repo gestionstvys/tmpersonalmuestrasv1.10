@@ -22,7 +22,7 @@
     <!-- ==========================================
          PILA DE BOTONES FLOTANTES DE REDES SOCIALES
          ========================================== -->
-    <div class="button-stack">
+    <nav class="button-stack" aria-label="Redes sociales y contacto">
         
         <!-- TikTok -->
         <div class="btn-wrapper">
@@ -56,7 +56,29 @@
             <span class="btn-label">Facebook</span>
         </div>
 
-    </div>
+        <!-- WhatsApp -->
+        <div class="btn-wrapper">
+            <a href="https://api.whatsapp.com/send/?phone=5215611265205" target="_blank" rel="noopener noreferrer" class="orb-btn btn-whatsapp" aria-label="WhatsApp: contacto directo y rápido">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M20.5 11.7a8.5 8.5 0 0 1-12.6 7.4L3 20l.9-4.7a8.5 8.5 0 1 1 16.6-3.6Z"></path>
+                    <path d="M8.7 8.2c.2-.5.4-.5.7-.5h.5c.2 0 .4.1.5.4l.7 1.7c.1.2 0 .4-.1.6l-.5.6c-.2.2-.2.4 0 .6.5.9 1.3 1.7 2.2 2.2.2.1.4.1.6-.1l.7-.8c.2-.2.4-.2.7-.1l1.6.8c.3.1.4.3.4.5 0 .3-.2 1.2-.8 1.6-.5.4-1.1.6-1.8.4-1.1-.2-2.4-.8-3.7-2-1.5-1.3-2.3-2.8-2.6-3.9-.2-.8.1-1.5.4-2Z"></path>
+                </svg>
+            </a>
+            <span class="btn-label">WhatsApp · Contacto directo y rápido</span>
+        </div>
+
+        <!-- Gmail: destinatario por definir -->
+        <div class="btn-wrapper">
+            <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;su=Contacto%20directo%20y%20r%C3%A1pido" target="_blank" rel="noopener noreferrer" class="orb-btn btn-gmail" aria-label="Gmail: contacto directo y rápido; destinatario por definir">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+                    <path d="m4 7 8 6 8-6"></path>
+                </svg>
+            </a>
+            <span class="btn-label">Gmail · Contacto directo y rápido</span>
+        </div>
+
+    </nav>
 
     <!-- Enlace al archivo JavaScript -->
     <script src="floating_buttons.js"></script>

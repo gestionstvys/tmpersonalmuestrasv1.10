@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 720" role="img" aria-labelledby="title desc">
+  <title id="title">Playera deportiva genérica, vista frontal</title>
+  <desc id="desc">Ilustración original de una playera lisa sin nombres, escudos ni logos.</desc>
+  <rect width="800" height="720" rx="32" fill="#edf1f3"/>
+  <circle cx="650" cy="130" r="82" fill="#dce7e1"/>
+  <path d="m277 142 80-43 43 29 43-29 80 43 105 78-53 72-63-43v330H288V249l-63 43-53-72z" fill="#0b2d63"/>
+  <path d="m277 142 80-43 43 29-38 70-85 57-75 37-43-58zM523 142l-80-43-43 29 38 70 85 57 75 37 43-58z" fill="#135472"/>
+  <path d="M288 249v330h224V249l-78 34-34-47-34 47z" fill="#0f416f"/>
+  <path d="m357 99 43 29 43-29-17 59c-11 19-27 31-48 38-21-7-37-19-48-38z" fill="#dce7e1"/>
+  <path d="M400 196v383" fill="none" stroke="#4e8875" stroke-width="12" opacity=".8"/>
+  <path d="M304 249v330m192-330v330" fill="none" stroke="#c0d2ca" stroke-width="5" opacity=".45"/>
+  <path d="M288 554h224" fill="none" stroke="#dce7e1" stroke-width="7" opacity=".8"/>
+  <path d="m225 292-44-8m374 8 44-8" fill="none" stroke="#dce7e1" stroke-width="9" stroke-linecap="round"/>
+</svg>

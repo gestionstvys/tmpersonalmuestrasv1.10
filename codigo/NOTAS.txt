@@ -2,8 +2,16 @@ CARPETA EXISTENTE CONSERVADA
 Esta ruta ya estaba dentro de public_html. Se mantiene en su lugar para no
 mover ni borrar estructura preexistente. La nueva organizacion usa
 componentes/ para los elementos independientes.
-Llamada actual: ninguna detectada en el esqueleto vacio.
-referencia de imágenes 
-logo principal-, logo_tmp uso principal, logo_neg_tmp 
-
- iconos son los favivon 
+Recursos y llamadas externas de las páginas públicas:
+- catalogo.html carga fotografías referenciales desde images.unsplash.com.
+- producto.html carga imágenes referenciales de recomendación desde Unsplash.
+- producto.js importa Three.js 0.186.1, GLTFLoader y OrbitControls desde
+  jsDelivr; el modelo GLB también se sirve desde jsDelivr, fijado a un commit.
+- producto.js prepara un enlace de WhatsApp con producto y las opciones de
+  talla, color y patrón elegidas; la persona revisa y envía el mensaje en
+  WhatsApp.
+- No se agregó una API, base de datos ni carga de archivos para estas páginas.
+Referencias de imágenes:
+- logo_tmp.png: logotipo principal.
+- logo_neg_tmp.png: variante del logotipo.
+- Icono_tmp.png: favicon.

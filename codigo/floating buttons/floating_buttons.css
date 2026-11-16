@@ -6,6 +6,8 @@
     --color-tiktok: #00f2fe;
     --color-instagram: #fd1d1d;
     --color-facebook: #1877f2;
+    --color-whatsapp: #25d366;
+    --color-gmail: #ea4335;
 }
 
 * {
@@ -112,6 +114,28 @@ body {
 }
 .btn-facebook:hover svg {
     fill: #ffffff;
+}
+
+/* WhatsApp Hover */
+.btn-whatsapp:hover {
+    background: var(--color-whatsapp);
+    border-color: var(--color-whatsapp);
+    box-shadow: 0 0 25px rgba(37, 211, 102, 0.42);
+    transform: scale(1.1);
+}
+.btn-whatsapp:hover svg {
+    stroke: #ffffff;
+}
+
+/* Gmail Hover */
+.btn-gmail:hover {
+    background: var(--color-gmail);
+    border-color: var(--color-gmail);
+    box-shadow: 0 0 25px rgba(234, 67, 53, 0.4);
+    transform: scale(1.1);
+}
+.btn-gmail:hover svg {
+    stroke: #ffffff;
 }
 
 /* --- ETIQUETA FLOTANTE (TOOLTIP) --- */

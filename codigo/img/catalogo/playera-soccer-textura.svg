@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 720" role="img" aria-labelledby="title desc">
+  <title id="title">Detalle ilustrado de tela deportiva</title>
+  <desc id="desc">Muestra gráfica de paneles y costuras de una playera deportiva sin marcas.</desc>
+  <rect width="800" height="720" rx="32" fill="#edf1f3"/>
+  <path d="M112 150Q135 115 185 124h432q54 0 69 48l36 390q4 40-37 40H115q-40 0-36-40z" fill="#0b2d63"/>
+  <path d="M143 159h514l34 397H109z" fill="#135472"/>
+  <path d="m160 170 62 386m34-386 53 386m44-386 44 386m34-386 35 386m49-386 26 386m52-386 17 386" fill="none" stroke="#7eaa9b" stroke-width="13" opacity=".56"/>
+  <path d="M135 276h521M126 394h540" fill="none" stroke="#dce7e1" stroke-width="7" opacity=".72"/>
+  <path d="M105 555h590" fill="none" stroke="#08264f" stroke-width="10" opacity=".45"/>
+  <circle cx="640" cy="160" r="18" fill="#dce7e1" opacity=".8"/>
+</svg>
