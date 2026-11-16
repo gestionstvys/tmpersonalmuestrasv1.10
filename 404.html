@@ -3,26 +3,58 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Página no encontrada | Tu Marca Personal</title>
-  <link rel="icon" type="image/png" href="codigo/img/logos/Icono_tmp.png">
-  <link rel="stylesheet" href="codigo/site-shell.css">
-  <link rel="stylesheet" href="codigo/menu/menu.css">
-  <link rel="stylesheet" href="codigo/footer/footer.css">
-  <link rel="stylesheet" href="codigo/floating%20buttons/floating_buttons.css">
+  <meta name="robots" content="noindex,follow">
+  <base href="/">
+  <title>Error 404 | Página no encontrada</title>
+  <link rel="icon" type="image/png" href="/codigo/img/logos/Icono_tmp.png">
+  <link rel="stylesheet" href="/codigo/site-shell.css">
+  <link rel="stylesheet" href="/codigo/menu/menu.css">
+  <link rel="stylesheet" href="/codigo/footer/footer.css">
+  <link rel="stylesheet" href="/codigo/floating%20buttons/floating_buttons.css">
+  <link rel="stylesheet" href="/codigo/404-page.css">
 </head>
-<body id="top">
+<body id="top" class="error404">
   <a class="skip-link" href="#contenido-principal">Saltar al contenido</a>
   <div id="site-header"></div>
-  <main id="contenido-principal" class="page-content">
-    <h1>Página no encontrada</h1>
-    <p>No encontramos la página que buscas.</p>
-    <p><a href="index.html">Volver al inicio</a></p>
+
+  <main id="contenido-principal" class="error404-main">
+    <section class="error404-layout" aria-labelledby="error404-title">
+      <div class="error404-scene" data-motion-scene aria-hidden="true">
+        <div class="error404-hanger">
+          <svg class="error404-hanger__svg" viewBox="0 0 320 280" focusable="false" aria-hidden="true">
+            <path class="error404-hanger__path" d="M160 126V86C160 55 196 42 218 61C224 67 227 74 226 82" />
+            <path class="error404-hanger__path" d="M160 125 25 229C10 240 19 258 39 258H281C301 258 310 240 295 229L160 125Z" />
+          </svg>
+          <span class="error404-hanger__tag">404</span>
+        </div>
+      </div>
+
+      <div class="error404-copy">
+        <h1 class="error404-title" id="error404-title">¡Vaya! Este look no está disponible</h1>
+        <p class="error404-description">La prenda o página que buscas no está en nuestro perchero. Puede que haya cambiado de temporada o se encuentre agotada.</p>
+
+        <div class="error404-actions">
+          <a class="error404-button error404-button--primary" href="/index.html">
+            Volver al inicio <span class="error404-arrow" aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <nav class="error404-categories" aria-label="Enlaces sugeridos">
+          <a href="/catalogo.html">Ver catálogo</a>
+          <a href="/novedades.html">Novedades</a>
+          <a href="/ayuda.html">Ayuda</a>
+        </nav>
+      </div>
+    </section>
   </main>
+
   <div id="site-footer"></div>
   <div id="site-floating-buttons"></div>
-  <script defer src="codigo/site-shell.js"></script>
-  <script defer src="codigo/menu/menu.js"></script>
-  <script defer src="codigo/footer/footer.js"></script>
-  <script defer src="codigo/floating%20buttons/floating_buttons.js"></script>
+  <script defer src="/codigo/site-shell.js"></script>
+  <script defer src="/codigo/menu/menu.js"></script>
+  <script defer src="/codigo/footer/footer.js"></script>
+  <script defer src="/codigo/floating%20buttons/floating_buttons.js"></script>
+  <script defer src="/codigo/404-page.js"></script>
 </body>
 </html>
+

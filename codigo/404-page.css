@@ -1,0 +1,287 @@
+:root {
+  --error404-navy: #0b2d63;
+  --error404-red: #d71935;
+  --error404-green: #08783d;
+  --error404-ink: #171a20;
+  --error404-muted: #445166;
+  --error404-paper: #f4f7fb;
+  --error404-line: #c7d1dc;
+  --error404-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --error404-ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+body.error404 {
+  display: flex;
+  min-height: 100vh;
+  min-height: 100svh;
+  flex-direction: column;
+  overflow-x: hidden;
+  color: var(--error404-ink);
+  background: var(--error404-paper);
+}
+
+body.error404 #site-floating-buttons {
+  display: none;
+}
+
+.error404-main {
+  display: grid;
+  flex: 1;
+  place-items: center;
+  padding: clamp(30px, 5vh, 56px) 20px;
+  background: var(--error404-paper);
+}
+
+.error404-layout {
+  display: grid;
+  justify-items: center;
+  width: min(100%, 640px);
+  text-align: center;
+}
+
+.error404-scene {
+  position: relative;
+  width: min(280px, calc(100vw - 48px));
+  height: 260px;
+  margin: 0 auto 15px;
+  isolation: isolate;
+  animation: error404-scene-arrive 620ms var(--error404-ease-out) both;
+}
+
+.error404-hanger {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  width: min(260px, 100%);
+  height: 240px;
+  transform: translateX(-50%) rotate(0);
+  transform-origin: 50% 40px;
+  animation: error404-hanger-swing 4.2s var(--error404-ease-in-out) infinite;
+}
+
+.error404-hanger__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.error404-hanger__path {
+  fill: none;
+  stroke: var(--error404-navy);
+  stroke-width: 16px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.error404-hanger__tag {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  display: grid;
+  width: 44%;
+  height: 43%;
+  place-items: center;
+  border-radius: 13px;
+  color: #fff;
+  background: var(--error404-red);
+  box-shadow: 0 10px 18px rgb(11 45 99 / 15%);
+  font-family: "Bebas Neue", "Arial Narrow", Impact, sans-serif;
+  font-size: clamp(2.6rem, 11vw, 3.4rem);
+  line-height: 1;
+  transform: translateX(-50%);
+}
+
+.error404-copy {
+  width: min(100%, 600px);
+  animation: error404-copy-arrive 620ms 80ms var(--error404-ease-out) both;
+}
+
+.error404-title {
+  max-width: 18ch;
+  margin: 0 auto;
+  color: var(--error404-navy);
+  font-family: "Bebas Neue", "Arial Narrow", Impact, sans-serif;
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.error404-description {
+  max-width: 58ch;
+  margin: 16px auto 0;
+  color: var(--error404-muted);
+  font-size: clamp(1rem, 1.5vw, 1.08rem);
+  line-height: 1.65;
+}
+
+.error404-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.error404-button {
+  display: inline-flex;
+  min-height: 50px;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 0 24px;
+  border: 2px solid var(--error404-green);
+  border-radius: 8px;
+  color: #fff;
+  background: var(--error404-green);
+  box-shadow: 0 8px 18px rgb(8 120 61 / 17%);
+  font: 700 0.92rem/1.2 Inter, Arial, sans-serif;
+  text-decoration: none;
+  transition: background-color 180ms ease, border-color 180ms ease, transform 180ms var(--error404-ease-out);
+}
+
+.error404-arrow {
+  position: relative;
+  display: inline-block;
+  width: 17px;
+  height: 2px;
+  background: currentColor;
+  transition: transform 180ms var(--error404-ease-out);
+}
+
+.error404-arrow::after {
+  position: absolute;
+  top: -4px;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  content: "";
+  transform: rotate(45deg);
+}
+
+.error404-categories {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 24px;
+  margin-top: 25px;
+}
+
+.error404-categories a {
+  color: var(--error404-navy);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: var(--error404-line);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+  transition: color 160ms ease, text-decoration-color 160ms ease;
+}
+
+.error404-button:focus-visible,
+.error404-categories a:focus-visible {
+  outline: 3px solid var(--error404-red);
+  outline-offset: 4px;
+}
+
+.error404-categories a:hover {
+  color: var(--error404-red);
+  text-decoration-color: currentColor;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .error404-button:hover {
+    transform: translateY(-2px);
+  }
+
+  .error404-button:hover .error404-arrow {
+    transform: translateX(3px);
+  }
+}
+
+html.error404-motion-paused .error404-scene * {
+  animation-play-state: paused !important;
+}
+
+@keyframes error404-scene-arrive {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes error404-copy-arrive {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes error404-hanger-swing {
+  0%, 100% { transform: translateX(-50%) rotate(-4deg); }
+  50% { transform: translateX(-50%) rotate(4deg); }
+}
+
+@media (max-width: 620px) {
+  .error404-main {
+    padding: 28px 18px;
+  }
+
+  .error404-scene {
+    height: 240px;
+    margin-bottom: 10px;
+  }
+
+  .error404-hanger {
+    top: 4px;
+    width: min(240px, 100%);
+    height: 224px;
+    transform-origin: 50% 36px;
+  }
+
+  .error404-hanger__tag {
+    border-radius: 12px;
+  }
+
+  .error404-title {
+    max-width: 14ch;
+    font-size: clamp(2.5rem, 10vw, 3.5rem);
+  }
+
+  .error404-description {
+    margin-top: 13px;
+    font-size: 0.98rem;
+  }
+
+  .error404-actions {
+    margin-top: 20px;
+  }
+
+  .error404-button {
+    width: min(100%, 320px);
+  }
+
+  .error404-categories {
+    gap: 10px 17px;
+    margin-top: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .error404-scene,
+  .error404-copy,
+  .error404-hanger {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+
+  .error404-hanger {
+    transform: translateX(-50%);
+  }
+
+  .error404-button,
+  .error404-arrow,
+  .error404-categories a {
+    transition-duration: 120ms;
+  }
+}
+
